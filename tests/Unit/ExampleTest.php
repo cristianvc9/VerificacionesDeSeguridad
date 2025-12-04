@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Http\Controllers\FiltrarApellidos;
 use App\Http\Controllers\LoginController;
 use PHPUnit\Framework\TestCase;
 
@@ -34,5 +35,31 @@ class ExampleTest extends TestCase
         $result = $controller->login('equipo@gmail.com', 'Equipo1-12345');
 
         $this->assertFalse($result);
+    }
+
+    // ============================================================================
+    // PRUEBAS DEL FILTRO DE APELLIDO LÓPEZ
+    // ============================================================================
+
+    public function test_filtra_apellidos_lopez_correctamente()
+    {
+        $controller = new FiltrarApellidos;
+
+        $nombres = [
+            'Ana López',
+            'Carlos Ramírez',
+            'Pedro López',
+            'Luis Méndez',
+            'María López García',
+            'Fernando Torres',
+        ];
+
+        $resultado = $controller->filtrarLopez($nombres);
+
+        $this->assertEquals([
+            'Ana López',
+            'Pedro López',
+            'María López García',
+        ], $resultado);
     }
 }
