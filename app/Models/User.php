@@ -46,7 +46,6 @@ class User extends Authenticatable
         ];
     }
 
-    // SHARON
     public function obtenerIniciales(): string
     {
         $nombreCompleto = trim($this->name);
