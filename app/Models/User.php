@@ -45,24 +45,22 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    //SHARON
+
+    // SHARON
     public function obtenerIniciales(): string
     {
-        //lipia espacios vacios
         $nombreCompleto = trim($this->name);
-        
+
         $partes = explode(' ', $nombreCompleto);
         $iniciales = '';
 
-        // Si hay al menos dos palabras (nombre y apellido)
         if (count($partes) >= 2) {
             $iniciales .= strtoupper(substr($partes[0], 0, 1));
             $iniciales .= strtoupper(substr(end($partes), 0, 1));
-        } elseif (!empty($partes[0])) { 
+        } elseif (! empty($partes[0])) {
             $iniciales = strtoupper(substr($partes[0], 0, 2));
         }
-        
-        return $iniciales;
- }
 
+        return $iniciales;
+    }
 }
