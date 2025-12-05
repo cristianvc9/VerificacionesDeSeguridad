@@ -56,10 +56,9 @@ class User extends Authenticatable
         if (count($partes) >= 2) {
             $iniciales .= strtoupper(substr($partes[0], 0, 1));
             $iniciales .= strtoupper(substr(end($partes), 0, 1));
-        } elseif (! empty($partes[0])) { // <-- Ajuste de estilo para Pint
+        } elseif (! empty($partes[0])) { 
             $iniciales = strtoupper(substr($partes[0], 0, 2));
         }
-
         return $iniciales;
     }
 }
