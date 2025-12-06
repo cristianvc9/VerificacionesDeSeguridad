@@ -45,4 +45,21 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function obtenerIniciales(): string
+    {
+        $nombreCompleto = trim($this->name);
+
+        $partes = explode(' ', $nombreCompleto);
+        $iniciales = '';
+
+        if (count($partes) >= 2) {
+            $iniciales .= strtoupper(substr($partes[0], 0, 1));
+            $iniciales .= strtoupper(substr(end($partes), 0, 1));
+        } elseif (! empty($partes[0])) {
+            $iniciales = strtoupper(substr($partes[0], 0, 2));
+        }
+
+        return $iniciales;
+    }
 }
