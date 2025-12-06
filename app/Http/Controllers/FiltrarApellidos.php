@@ -14,7 +14,7 @@ class FiltrarApellidos
     }
 
     /**
-     * Filtra los nombres que contengan el apellido López
+     * Filtra los nombres que contengan el apellido de López
      *
      * @param  string[]  $nombres  Array de nombres completos
      * @return string[] Array con solo los que tienen "López"
