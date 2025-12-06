@@ -14,6 +14,7 @@ class ExampleTest extends TestCase
         $this->assertTrue(true);
     }
 
+    // LOGIN
     public function test_login_aprobado(): void
     {
         $controller = new LoginController;
