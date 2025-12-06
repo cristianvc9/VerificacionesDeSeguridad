@@ -40,7 +40,7 @@ class ExampleTest extends TestCase
     }
 
     // ============================================================================
-    // PRUEBAS DEL FILTRO DE APELLIDO LÓPEZ
+    // PRUEBAS DEL FILTRO APELLIDO LÓPEZ
     // ============================================================================
 
     public function test_filtra_apellidos_lopez_correctamente()
