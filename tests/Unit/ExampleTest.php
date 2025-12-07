@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Http\Controllers\FiltrarApellidos;
 use App\Http\Controllers\InvertirPalabra;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NormalizarCadena;
 use App\Models\User;
 use PHPUnit\Framework\TestCase;
 
@@ -114,5 +115,16 @@ class ExampleTest extends TestCase
         $this->assertEquals('puerta', $result);
         $this->assertNotEquals('atreup', $result);
 
+    }
+
+    // Pruebas de Normalizar Cadena
+    public function test_normalizar_cadena(): void
+    {
+        $controller = new NormalizarCadena;
+
+        $result = $controller->normalizarcadena(cadena: 'José Cantó Una Canción');
+
+        $this->assertIsString($result);
+        $this->assertNotEmpty($result);
     }
 }
