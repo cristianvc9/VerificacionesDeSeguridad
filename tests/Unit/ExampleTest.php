@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Http\Controllers\FiltrarApellidos;
+use App\Http\Controllers\InvertirPalabra;
 use App\Http\Controllers\LoginController;
 use App\Models\User;
 use PHPUnit\Framework\TestCase;
@@ -100,5 +101,18 @@ class ExampleTest extends TestCase
         $iniciales = $user->obtenerIniciales();
 
         $this->assertEquals('CA', $iniciales);
+    }
+
+    // Pruebas de palabra invertida
+    public function test_palabra_invertida(): void
+    {
+        $controller = new InvertirPalabra;
+
+        $result = $controller->Invertir(texto: 'atreup');
+
+        $this->assertIsString($result);
+        $this->assertEquals('puerta', $result);
+        $this->assertNotEquals('atreup', $result);
+
     }
 }
