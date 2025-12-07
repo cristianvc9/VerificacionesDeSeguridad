@@ -73,32 +73,32 @@ class ExampleTest extends TestCase
     // Pruebas iniciales de nombre
     public function test_iniciales_funciona_con_nombre_y_apellido(): void
     {
-     $controller = new InicialesController();
-     $nombre = 'Ana Sofia Garcia';
+        $controller = new InicialesController;
+        $nombre = 'Ana Sofia Garcia';
 
-     $iniciales = $controller->obtenerIniciales($nombre);
+        $iniciales = $controller->obtenerIniciales($nombre);
 
-     $this->assertEquals('AG', $iniciales);
+        $this->assertEquals('AG', $iniciales);
     }
 
     public function test_iniciales_maneja_espacios_extra_o_minusculas(): void
     {
-     $controller = new InicialesController();
-     $nombre = ' pablo de la cruz ';
+        $controller = new InicialesController;
+        $nombre = ' pablo de la cruz ';
 
-     $iniciales = $controller->obtenerIniciales($nombre);
+        $iniciales = $controller->obtenerIniciales($nombre);
 
-     $this->assertEquals('PC', $iniciales);
+        $this->assertEquals('PC', $iniciales);
     }
 
     public function test_iniciales_maneja_un_solo_nombre(): void
     {
-     $controller = new InicialesController();
-     $nombre = 'Carlos';
+        $controller = new InicialesController;
+        $nombre = 'Carlos';
 
-     $iniciales = $controller->obtenerIniciales($nombre);
+        $iniciales = $controller->obtenerIniciales($nombre);
 
-     $this->assertEquals('CA', $iniciales);
+        $this->assertEquals('CA', $iniciales);
     }
 
     // Pruebas de palabra invertida
