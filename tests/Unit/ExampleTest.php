@@ -3,10 +3,10 @@
 namespace Tests\Unit;
 
 use App\Http\Controllers\FiltrarApellidos;
+use App\Http\Controllers\InicialesController;
 use App\Http\Controllers\InvertirPalabra;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NormalizarCadena;
-use App\Models\User;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
@@ -71,35 +71,32 @@ class ExampleTest extends TestCase
     }
 
     // Pruebas iniciales de nombre
-    public function el_metodo_obtener_iniciales_funciona_con_nombre_y_apellido()
+    public function test_iniciales_funciona_con_nombre_y_apellido(): void
     {
-        $user = User::factory()->make([
-            'name' => 'Ana Sofia Garcia',
-        ]);
+        $controller = new InicialesController;
+        $nombre = 'Ana Sofia Garcia';
 
-        $iniciales = $user->obtenerIniciales();
+        $iniciales = $controller->obtenerIniciales($nombre);
 
         $this->assertEquals('AG', $iniciales);
     }
 
-    public function el_metodo_obtener_iniciales_maneja_espacios_extra_o_minusculas()
+    public function test_iniciales_maneja_espacios_extra_o_minusculas(): void
     {
-        $user = User::factory()->make([
-            'name' => '  pablo de la cruz ',
-        ]);
+        $controller = new InicialesController;
+        $nombre = ' pablo de la cruz ';
 
-        $iniciales = $user->obtenerIniciales();
+        $iniciales = $controller->obtenerIniciales($nombre);
 
         $this->assertEquals('PC', $iniciales);
     }
 
-    public function el_metodo_obtener_iniciales_maneja_un_solo_nombre()
+    public function test_iniciales_maneja_un_solo_nombre(): void
     {
-        $user = User::factory()->make([
-            'name' => 'Carlos',
-        ]);
+        $controller = new InicialesController;
+        $nombre = 'Carlos';
 
-        $iniciales = $user->obtenerIniciales();
+        $iniciales = $controller->obtenerIniciales($nombre);
 
         $this->assertEquals('CA', $iniciales);
     }
