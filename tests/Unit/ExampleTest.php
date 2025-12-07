@@ -3,8 +3,10 @@
 namespace Tests\Unit;
 
 use App\Http\Controllers\FiltrarApellidos;
+use App\Http\Controllers\InicialesController;
+use App\Http\Controllers\InvertirPalabra;
 use App\Http\Controllers\LoginController;
-use App\Models\User;
+use App\Http\Controllers\NormalizarCadena;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
@@ -14,7 +16,10 @@ class ExampleTest extends TestCase
         $this->assertTrue(true);
     }
 
-    // LOGIN
+    // ============================================================================
+    // PRUEBAS DE LOGIN
+    // ============================================================================
+
     public function test_login_aprobado(): void
     {
         $controller = new LoginController;
@@ -66,36 +71,57 @@ class ExampleTest extends TestCase
     }
 
     // Pruebas iniciales de nombre
-    public function el_metodo_obtener_iniciales_funciona_con_nombre_y_apellido()
+    public function test_iniciales_funciona_con_nombre_y_apellido(): void
     {
-        $user = User::factory()->make([
-            'name' => 'Ana Sofia Garcia',
-        ]);
+        $controller = new InicialesController;
+        $nombre = 'Ana Sofia Garcia';
 
-        $iniciales = $user->obtenerIniciales();
+        $iniciales = $controller->obtenerIniciales($nombre);
 
         $this->assertEquals('AG', $iniciales);
     }
 
-    public function el_metodo_obtener_iniciales_maneja_espacios_extra_o_minusculas()
+    public function test_iniciales_maneja_espacios_extra_o_minusculas(): void
     {
-        $user = User::factory()->make([
-            'name' => '  pablo de la cruz ',
-        ]);
+        $controller = new InicialesController;
+        $nombre = ' pablo de la cruz ';
 
-        $iniciales = $user->obtenerIniciales();
+        $iniciales = $controller->obtenerIniciales($nombre);
 
         $this->assertEquals('PC', $iniciales);
     }
 
-    public function el_metodo_obtener_iniciales_maneja_un_solo_nombre()
+    public function test_iniciales_maneja_un_solo_nombre(): void
     {
-        $user = User::factory()->make([
-            'name' => 'Carlos',
-        ]);
+        $controller = new InicialesController;
+        $nombre = 'Carlos';
 
-        $iniciales = $user->obtenerIniciales();
+        $iniciales = $controller->obtenerIniciales($nombre);
 
         $this->assertEquals('CA', $iniciales);
+    }
+
+    // Pruebas de palabra invertida
+    public function test_palabra_invertida(): void
+    {
+        $controller = new InvertirPalabra;
+
+        $result = $controller->Invertir(texto: 'atreup');
+
+        $this->assertIsString($result);
+        $this->assertEquals('puerta', $result);
+        $this->assertNotEquals('atreup', $result);
+
+    }
+
+    // Pruebas de Normalizar Cadena
+    public function test_normalizar_cadena(): void
+    {
+        $controller = new NormalizarCadena;
+
+        $result = $controller->normalizarcadena(cadena: 'José Cantó Una Canción');
+
+        $this->assertIsString($result);
+        $this->assertNotEmpty($result);
     }
 }
