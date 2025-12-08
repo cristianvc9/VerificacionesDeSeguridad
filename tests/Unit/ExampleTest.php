@@ -23,7 +23,7 @@ class ExampleTest extends TestCase
     public function test_login_aprobado(): void
     {
         $controller = new LoginController;
-        $result = $controller->login('equipo1@gmail.com', 'Equipo1-12345');
+        $result = $controller->login('equipo1@gil.com', 'Equipo1-12345');
 
         $this->assertTrue($result);
     }
