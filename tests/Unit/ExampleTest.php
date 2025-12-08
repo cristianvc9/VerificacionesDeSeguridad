@@ -26,6 +26,7 @@ class ExampleTest extends TestCase
         $result = $controller->login('equipo1@gmail.com', 'Equipo1-12345');
 
         $this->assertTrue($result);
+        $this->assertIsBool($result);
     }
 
     public function test_login_contraseña_incorrecta(): void
@@ -111,7 +112,6 @@ class ExampleTest extends TestCase
         $this->assertIsString($result);
         $this->assertEquals('puerta', $result);
         $this->assertNotEquals('atreup', $result);
-
     }
 
     // Pruebas de Normalizar Cadena
